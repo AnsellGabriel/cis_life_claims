@@ -1,0 +1,9 @@
+<%# <div class="card">
+  <h5 class="card-header">Edit claim beneficiary</h5>
+  <div class="card-body"> %>
+    <%#= render "form", claim_beneficiary: @claim_beneficiary %>
+  <%# </div>
+</div> %>
+<%= render "remote_modal", title: "New Beneficiary" do %>
+  <%= render "form", url: claim_beneficiaries_path(v: @process_claim), meth: 'post' %>
+<% end %>

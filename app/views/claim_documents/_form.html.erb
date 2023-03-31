@@ -1,0 +1,16 @@
+
+<%= simple_form_for(@claim_document, url: url, method: meth) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.association :document %>
+    <br>
+    <%= f.file_field :file %>
+  </div>
+  <br>
+  <div class="form-actions text-end">
+    <%= link_to "Back", claim_documents_path, class: "btn btn-secondary" %>
+    <%= f.button :submit, class: "btn btn-success" %>
+  </div>
+<% end %>

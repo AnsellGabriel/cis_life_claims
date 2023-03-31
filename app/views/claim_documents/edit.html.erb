@@ -1,0 +1,10 @@
+<%# <div class="card">
+  <h5 class="card-header">Edit claim document</h5>
+  <div class="card-body"> %>
+    <%#= render "form", claim_document: @claim_document %>
+  <%# </div>
+</div> %>
+
+<%= render "remote_modal", title: "Edit document" do %>
+  <%= render "form", url: claim_document_path(@claim_document), meth: 'patch' %>
+<% end %>

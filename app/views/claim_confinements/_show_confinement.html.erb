@@ -1,0 +1,26 @@
+<table class="table table-borderless table-hover">
+  <thead>
+    <tr class="border-top border-bottom border-primary text-primary">
+      <th>#</th>
+      <th>Date Confinement</th>
+      <th class="text-end">Amount</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @process_claim.claim_confinements.each do |claim_confinement| %>
+      <tr>
+        <th scope="row"><%= claim_confinement.id %></th>
+        <td><%= claim_confinement.date_admit %> to <%= claim_confinement.date_discharge %>
+          <small class="text-primary"><%= claim_confinement.days_confinement %> days</small></td>
+        <td class="text-end"> <%= to_curr(claim_confinement.amount) %> </td>
+        <td class="text-end">
+          <% if params[:action] == 'show' %>
+            <%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_claim_confinement_path(claim_confinement), class: 'btn btn-outline-primary btn-sm', data: { turbo_frame: "remote_modal" }  %>
+            <%= link_to '<i class="bi bi-trash3"></i>'.html_safe, claim_confinement, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

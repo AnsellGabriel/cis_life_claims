@@ -1,0 +1,75 @@
+@import "bootstrap";
+
+html,
+body {
+    height: 100%;
+    // background:radial-gradient(ellipse at center, rgba(255,254,234,1) 0%, rgb(255, 255, 255) 35%, #ffffff 100%);
+}
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+
+.track{position: relative;background-color: #ddd;height: 7px;display: -webkit-box;display: -ms-flexbox;display: flex;margin-bottom: 60px;margin-top: 50px}
+.track .step{-webkit-box-flex: 1;-ms-flex-positive: 1;flex-grow: 1;width: 25%;margin-top: -18px;text-align: center;position: relative}
+.track .step.active:before{background: #226cff}.track .step::before{height: 7px;position: absolute;content: "";width: 100%;left: 0;top: 18px}
+.track .step.active .icon{background: #226cff;color: #fff}
+.track .icon{display: inline-block;width: 40px;height: 40px;line-height: 40px;position: relative;border-radius: 100%;background: #ddd}
+.track .step.active .text{font-weight: 400;color: #000}
+.track .text{display: block;margin-top: 7px}
+.itemside{position: relative;display: -webkit-box;display: -ms-flexbox;display: flex;width: 100%}
+.itemside .aside{position: relative;-ms-flex-negative: 0;flex-shrink: 0}
+.img-sm{width: 80px;height: 80px;padding: 7px}ul.row, ul.row-sm{list-style: none;padding: 0}
+.itemside .info{padding-left: 15px;padding-right: 7px}
+.itemside .title{display: block;margin-bottom: 5px;color: #212529}
+
+ul.timeline {
+    list-style-type: none;
+    position: relative;
+}
+ul.timeline:before {
+    content: ' ';
+    background: #d4d9df;
+    display: inline-block;
+    position: absolute;
+    left: 29px;
+    width: 2px;
+    height: 100%;
+    z-index: 400;
+}
+ul.timeline > li {
+    // margin: 25px 0;
+    padding-left: 25px;
+}
+ul.timeline > li:before {
+    content: ' ';
+    background: #226cff;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    //  border: 3px solid #226cff;
+    left: 22px;
+    width: 15px;
+    height: 15px;
+    z-index: 400;
+}
+.bg_gradient {
+    background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+    // background-color:rgba(202, 205, 16, 0.25);
+}
+.jumbotron{
+  background: 
+linear-gradient(
+  rgba(0, 0, 250, 0.25), 
+  rgba(125, 250, 250, 0.45)
+)url("https://unsplash.com/photos/Zyx1bK9mqmA"),
+;
+background-repeat: no-repeat;
+background-attachment: fixed;
+color:white !important;
+height:100vh;
+}
+

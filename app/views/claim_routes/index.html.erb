@@ -1,0 +1,41 @@
+<%= content_tag :h1, "List of Claim Routes" %>
+
+
+<div class="text-end mb-3">
+  <%= link_to new_claim_route_path, class: 'btn btn-primary' do %>
+    New Claim Route
+  <% end %>
+</div>
+
+<table class ="table table-striped">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+
+      <th>#</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th></th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @claim_routes.each do |claim_route| %>
+        <tr>
+
+        <th scope="row"><%= claim_route.id %></th>
+        <td><%= claim_route.name %></td>
+        <td><%= claim_route.description %></td>
+    
+          <td>
+            <%= link_to 'View', claim_route, class: 'btn btn-secondary btn-sm' %>
+            <%= link_to 'Edit', edit_claim_route_path(claim_route), class: 'btn btn-secondary btn-sm' %>
+            <%= link_to "Delete", claim_route, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  acd: MyText
+  ucd: MyText
+  osccd: MyText
+  process_claim: one
+
+two:
+  acd: MyText
+  ucd: MyText
+  osccd: MyText
+  process_claim: two

@@ -1,0 +1,43 @@
+<%= content_tag :h1, "List of Claim Confinements" %>
+
+
+<div class="text-end mb-3">
+  <%= link_to new_claim_confinement_path, class: 'btn btn-primary' do %>
+    New Claim Confinement
+  <% end %>
+</div>
+
+<table class ="table table-striped">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+
+      <th>#</th>
+        <th>Date Admit</th>
+        <th>Date Discharge</th>
+        <th>Amount</th>
+        <th></th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @claim_confinements.each do |claim_confinement| %>
+        <tr>
+
+        <th scope="row"><%= claim_confinement.id %></th>
+        <td><%= claim_confinement.date_admit %></td>
+        <td><%= claim_confinement.date_discharge %></td>
+        <td><%= claim_confinement.amount %></td>
+    
+          <td>
+            <%= link_to 'View', claim_confinement, class: 'btn btn-secondary btn-sm' %>
+            <%= link_to 'Edit', edit_claim_confinement_path(claim_confinement), class: 'btn btn-secondary btn-sm' %>
+            <%= link_to "Delete", claim_confinement, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

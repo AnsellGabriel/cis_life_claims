@@ -1,0 +1,43 @@
+<%= content_tag :h1, "List of Claim Benefits" %>
+
+
+<div class="text-end mb-3">
+  <%= link_to "New item", new_claim_benefit_path, class: "btn btn-primary", data: { turbo_frame: "remote_modal" }%>
+</div>
+
+<table class ="table table-striped">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+
+      <th>#</th>
+        <th>Process Claim</th>
+        <th>Benefit</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th></th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @claim_benefits.each do |claim_benefit| %>
+        <tr>
+
+        <th scope="row"><%= claim_benefit.id %></th>
+        <td><%= claim_benefit.process_claim %></td>
+        <td><%= claim_benefit.benefit %></td>
+        <td><%= claim_benefit.amount %></td>
+        <td><%= claim_benefit.status %></td>
+    
+          <td>
+            <%= link_to 'View', claim_benefit, class: 'btn btn-secondary btn-sm' %>
+            <%= link_to 'Edit', edit_claim_benefit_path(claim_benefit), class: 'btn btn-secondary btn-sm' %>
+            <%= link_to "Delete", claim_benefit, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

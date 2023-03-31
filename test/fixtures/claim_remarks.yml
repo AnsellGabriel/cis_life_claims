@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  process_claim: one
+  user: MyString
+  status: MyString
+  remarks: MyText
+
+two:
+  process_claim: two
+  user: MyString
+  status: MyString
+  remarks: MyText

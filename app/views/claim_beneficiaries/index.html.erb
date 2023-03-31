@@ -1,0 +1,45 @@
+<%= content_tag :h1, "List of Claim Beneficiaries" %>
+
+
+<div class="text-end mb-3">
+  <%= link_to new_claim_beneficiary_path, class: 'btn btn-primary' do %>
+    New Claim Beneficiary
+  <% end %>
+</div>
+
+<table class ="table table-striped">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+
+      <th>#</th>
+        <th>Process Claim</th>
+        <th>Name</th>
+        <th>Birthdate</th>
+        <th>Relationship</th>
+        <th></th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @claim_beneficiaries.each do |claim_beneficiary| %>
+        <tr>
+
+        <th scope="row"><%= claim_beneficiary.id %></th>
+        <td><%= claim_beneficiary.process_claim %></td>
+        <td><%= claim_beneficiary.name %></td>
+        <td><%= claim_beneficiary.birthdate %></td>
+        <td><%= claim_beneficiary.relationship %></td>
+    
+          <td>
+            <%= link_to 'View', claim_beneficiary, class: 'btn btn-secondary btn-sm' %>
+            <%= link_to 'Edit', edit_claim_beneficiary_path(claim_beneficiary), class: 'btn btn-secondary btn-sm' %>
+            <%= link_to "Delete", claim_beneficiary, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

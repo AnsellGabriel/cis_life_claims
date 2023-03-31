@@ -1,0 +1,11 @@
+
+<%# <div class="card">
+  <h5 class="card-header">Edit claim confinement</h5>
+  <div class="card-body"> %>
+    <%#= render "form", claim_confinement: @claim_confinement %>
+  <%# </div>
+</div> %>
+
+<%= render "remote_modal", title: "New item" do %>
+    <%= render "form", url: claim_confinements_path(v: @process_claim), meth: 'post' %>
+  <% end %>

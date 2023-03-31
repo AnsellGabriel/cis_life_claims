@@ -1,0 +1,51 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cooperative: one
+  coop_branch: one
+  plan: one
+  agent: one
+  geo_region: one
+  geo_province: one
+  geo_municipality: one
+  geo_barangay: one
+  cause: one
+  unit: MyString
+  insure_type: MyString
+  street: MyString
+  date_filed: 2022-11-24
+  status: MyString
+  lastname: MyString
+  firstname: MyString
+  middlename: MyString
+  suffix: MyString
+  birthdate: 2022-11-24
+  gender: MyString
+  age: 1
+  occupation: MyString
+  date_incident: 2022-11-24
+
+two:
+  cooperative: two
+  coop_branch: two
+  plan: two
+  agent: two
+  geo_region: two
+  geo_province: two
+  geo_municipality: two
+  geo_barangay: two
+  cause: two
+  unit: MyString
+  insure_type: MyString
+  street: MyString
+  date_filed: 2022-11-24
+  status: MyString
+  lastname: MyString
+  firstname: MyString
+  middlename: MyString
+  suffix: MyString
+  birthdate: 2022-11-24
+  gender: MyString
+  age: 1
+  occupation: MyString
+  date_incident: 2022-11-24

@@ -1,0 +1,43 @@
+<%= content_tag :h1, "List of Claim Documents" %>
+
+
+<div class="text-end mb-3">
+  <%= link_to new_claim_document_path, class: 'btn btn-primary' do %>
+    New Claim Document
+  <% end %>
+</div>
+
+<table class ="table table-striped">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+
+      <th>#</th>
+        <th>Process Claim</th>
+        <th>Document</th>
+        <th>File</th>
+        <th></th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @claim_documents.each do |claim_document| %>
+        <tr>
+
+        <th scope="row"><%= claim_document.id %></th>
+        <td><%= claim_document.process_claim %></td>
+        <td><%= claim_document.document %></td>
+        <td><%= claim_document.file %></td>
+    
+          <td>
+            <%= link_to 'View', claim_document, class: 'btn btn-secondary btn-sm' %>
+            <%= link_to 'Edit', edit_claim_document_path(claim_document), class: 'btn btn-secondary btn-sm' %>
+            <%= link_to "Delete", claim_document, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

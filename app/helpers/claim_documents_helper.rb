@@ -1,0 +1,2 @@
+module ClaimDocumentsHelper
+end

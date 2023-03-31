@@ -1,0 +1,9 @@
+<%# <div class="card">
+  <h5 class="card-header">Edit claim coverage</h5>
+  <div class="card-body"> %>
+<%= render "remote_modal", title: "Edit coverage " do %>
+  <%= render "form", url: claim_coverage_path(c: @claim_coverage), meth: 'patch' %>
+<% end %>
+    <%#= render "form", claim_coverage: @claim_coverage %>
+  <%# </div>
+</div> %>

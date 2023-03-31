@@ -1,0 +1,26 @@
+<div class="mb-3">
+  <ul class="timeline">
+  <% @process_claim.claim_tracks.order(created_at: :desc).each do |ct| %>
+    <li class="mb-3">
+      <p class="text-primary mb-1"> <%= ct.claim_route %> <small class="text-muted"> <%= ct.created_at %> </small></p>
+      <small> <%= ct.description %> by <%= ct.user %> </small>
+    </li>
+  <% end %>
+    
+  </ul>
+  <%# <h4>Latest News</h4> %>
+  <%# <ul class="timeline">
+    <li class="mb-3">
+      <p class="text-primary mb-1">Claims filed <small class="text-muted">21 March, 2014</small></p>
+      <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi
+        semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in
+        sodales vehicula....</small>
+    </li>
+    <li>
+      <p class="text-primary mb-1">Claims process <small class="text-muted">21 March, 2014</small></p>
+      <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi
+        semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in
+        sodales vehicula....</small>
+    </li>
+  </ul> %>
+</div>

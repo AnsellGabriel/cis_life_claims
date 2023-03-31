@@ -1,0 +1,35 @@
+<%= content_tag :h1, 'Claims for Evalutation' %>
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Claims details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @process_claims.each do |process_claim| %>
+      <tr>
+        <td><%= process_claim.id %></td>
+        <td>
+          <div class="row">
+            <div class="col-md-4">
+              <strong><%= process_claim.get_fullname %></strong> <br>
+              <small><%= process_claim.cooperative %> <%= process_claim.coop_branch %></small><br>
+              <small><%= process_claim.agent %> </small><br>
+              <span class="badge text-dark bg-info"><%= process_claim.entry_type %></span> <span class="badge bg-warning text-dark"><%= process_claim.status %></span>
+              <% @claim_track = ClaimTrack.where(process_claim: process_claim).order(created_at: :desc).first %>
+              <span class="badge bg-warning text-dark"><%= process_claim.claim_route %></span> <span class="badge bg-warning text-dark">Forwarded by <%= @claim_track.user %></span> <br>
+              <small class="text-muted"> <%= @claim_track.created_at %> </small>
+            </div>
+            <div class="col-md-8">
+              <% @remark = process_claim.claim_remarks.order(created_at: :desc).first %>
+              <small> <span class="badge bg-primary"><%= @remark.status unless @remark.nil? %></span></small>
+              <small class="text-break"> <%= @remark.remark unless @remark.nil? %></small> <br>
+              <%= link_to "View Details", evaluate_process_claim_path(process_claim.id), class: "btn btn-warning btn-sm mt-2" %>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

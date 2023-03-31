@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_admit: 2022-12-09
+  date_discharge: 2022-12-09
+  amount: 9.99
+
+two:
+  date_admit: 2022-12-09
+  date_discharge: 2022-12-09
+  amount: 9.99

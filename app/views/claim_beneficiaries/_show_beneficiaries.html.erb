@@ -1,0 +1,27 @@
+<table class="table table-borderless table-hover">
+  <thead>
+    <tr class="border-top border-bottom border-primary">
+      <th class="text-primary">#</th>
+      <th class="text-primary">Name</th>
+      <th class="text-primary">Birthdate</th>
+      <th class="text-primary">Relationship</th>
+      <th class="text-primary"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @process_claim.claim_beneficiaries.each do |claim_beneficiary| %>
+      <tr>
+        <th scope="row"><%= claim_beneficiary.id %></th>
+        <td><%= claim_beneficiary.name %></td>
+        <td><%= claim_beneficiary.birthdate %> <small class="text-primary"> Age: <%= claim_beneficiary.age %> </small></td>
+        <td><%= claim_beneficiary.relationship %></td>
+        <td class="text-end">
+          <% if params[:action] == 'show' %>
+            <%= link_to '<i class="bi bi-pencil-square"></i>'.html_safe, edit_claim_beneficiary_path(claim_beneficiary), class: 'btn btn-outline-primary btn-sm', data: { turbo_frame: "remote_modal" } %>
+            <%= link_to '<i class="bi bi-trash3"></i>'.html_safe, claim_beneficiary, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

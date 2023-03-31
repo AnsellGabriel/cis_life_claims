@@ -1,0 +1,16 @@
+<div class="mt-3">
+  <% unless @process_claim.approval %>
+    <%= link_to '<i class="bi bi-clipboard-plus"></i> Return to claim filed'.html_safe, route_process_claim_path(p: 2), class: "btn btn-primary" if @process_claim.processing %>
+    <%= link_to '<i class="bi bi-clipboard-plus"></i> Process'.html_safe, route_process_claim_path(p: 3), class: "btn btn-primary" unless @process_claim.processing %>
+  <% end %>
+  <% if @claim_amount >= @authority.min_authority && @claim_amount <= @authority.max_authority && @process_claim.approval  %>
+    <%= link_to '<i class="bi bi-clipboard-plus"></i> Approve'.html_safe, change_status_process_claim_path(@process_claim.id, s: "Approved"), class: "btn btn-primary" if @process_claim.approval && @process_claim.status.empty?  %>
+    <%#= link_to '<i class="bi bi-clipboard-plus"></i> Denied'.html_safe, change_status_process_claim_path(@process_claim.id, s: "Denied"), class: "btn btn-danger" if current_user.authority_level_id == 3 && @process_claim.claim_route_id == 4 %>
+    <%= link_to '<i class="bi bi-clipboard-plus"></i> Denied'.html_safe, new_claim_remark_path(v: @process_claim, s: "Denied"), class: "btn btn-danger", data: { turbo_frame: "remote_modal" } if current_user.authority_level_id == 3 && @process_claim.claim_route_id == 4 %>
+  <% else %>
+    <%= link_to '<i class="bi bi-clipboard-plus"></i> For Evaluation'.html_safe, route_process_claim_path(p: 4), class: "btn btn-primary" if @process_claim.claim_route_id == 3 %>
+    <%= link_to '<i class="bi bi-clipboard-plus"></i> For VP Evaluation'.html_safe, route_process_claim_path(p: 5), class: "btn btn-primary" if @process_claim.claim_route_id == 4 && current_user.authority_level_id == 3 %>
+    <%= link_to '<i class="bi bi-clipboard-plus"></i> For President Evaluation'.html_safe, route_process_claim_path(p: 6), class: "btn btn-primary" if @process_claim.claim_route_id == 5 && current_user.authority_level_id == 4 %>
+  <% end %>
+    <%= link_to '<i class="bi bi-clipboard-plus"></i> Reconsider'.html_safe, new_claim_remark_path(v: @process_claim, s: "Reconsider"), class: "btn btn-warning", data: { turbo_frame: "remote_modal" } if @process_claim.claim_route_id == 9 %>
+</div>

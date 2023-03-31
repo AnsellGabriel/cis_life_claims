@@ -1,0 +1,2 @@
+module ClaimCausesHelper
+end

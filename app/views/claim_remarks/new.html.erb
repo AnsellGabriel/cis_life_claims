@@ -1,0 +1,10 @@
+
+<%# <div class="card">
+  <h5 class="card-header">Edit claim remark</h5>
+  <div class="card-body"> %>
+    <%#= render "form", url: claim_remarks_path(v: @process_claim), meth: 'post' %>
+  <%# </div>
+</div> %>
+<%= render "remote_modal", title: "Add Claim Remarks" do %>
+  <%= render "form", url: claim_remarks_path(v: @process_claim, s: @change_status), meth: 'post' %>
+<% end %>

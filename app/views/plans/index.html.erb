@@ -1,0 +1,43 @@
+<%= content_tag :h1, "List of Plans" %>
+
+
+<div class="text-end mb-3">
+  <%= link_to new_plan_path, class: 'btn btn-primary' do %>
+    New Plan
+  <% end %>
+</div>
+
+<table class ="table table-striped">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+
+      <th>#</th>
+        <th>Name</th>
+        <th>Acronym</th>
+        <th>Description</th>
+        <th></th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @plans.each do |plan| %>
+        <tr>
+
+        <th scope="row"><%= plan.id %></th>
+        <td><%= plan.name %></td>
+        <td><%= plan.acronym %></td>
+        <td><%= plan.description %></td>
+    
+          <td>
+            <%= link_to 'View', plan, class: 'btn btn-secondary btn-sm' %>
+            <%= link_to 'Edit', edit_plan_path(plan), class: 'btn btn-secondary btn-sm' %>
+            <%= link_to "Delete", plan, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

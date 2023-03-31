@@ -1,0 +1,45 @@
+<%= content_tag :h1, "List of Claim Distributions" %>
+
+
+<div class="text-end mb-3">
+  <%= link_to new_claim_distribution_path, class: 'btn btn-primary' do %>
+    New Claim Distribution
+  <% end %>
+</div>
+
+<table class ="table table-striped">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+
+      <th>#</th>
+        <th>Process Claim</th>
+        <th>Name</th>
+        <th>Amount Type</th>
+        <th>Amount</th>
+        <th></th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @claim_distributions.each do |claim_distribution| %>
+        <tr>
+
+        <th scope="row"><%= claim_distribution.id %></th>
+        <td><%= claim_distribution.process_claim %></td>
+        <td><%= claim_distribution.name %></td>
+        <td><%= claim_distribution.amount_type %></td>
+        <td><%= claim_distribution.amount %></td>
+    
+          <td>
+            <%= link_to 'View', claim_distribution, class: 'btn btn-secondary btn-sm' %>
+            <%= link_to 'Edit', edit_claim_distribution_path(claim_distribution), class: 'btn btn-secondary btn-sm' %>
+            <%= link_to "Delete", claim_distribution, class: "btn btn-danger btn-sm", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

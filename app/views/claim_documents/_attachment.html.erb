@@ -1,0 +1,11 @@
+<% if cd.file.attached? %>
+  <%# if cd.file.image? %>
+    <%# <div class="message-image-container"> %>
+      <%#= image_tag(cd.file, class:"message-image") %>
+      <%= link_to '<i class="bi bi-eye"></i>'.html_safe, rails_blob_url(cd.file), target: :_blank, class: 'btn btn-outline-primary btn-sm' %>
+      <%= link_to '<i class="bi bi-file-earmark-arrow-down"></i>'.html_safe, rails_blob_path(cd.file,disposition: "attachment"), class: 'btn btn-outline-primary btn-sm' %>
+    <%# </div> %>
+  <%# elsif cd.file.video? %>
+    <%#= video_tag(url_for(cd.file), class:"message-video", controls: "") %>
+  <%# end %>
+<% end %>

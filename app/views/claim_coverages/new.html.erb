@@ -1,0 +1,9 @@
+
+<%# <div class="card">
+  <h5 class="card-header">Add claim coverage</h5>
+  <div class="card-body"> %>
+  <%= render "remote_modal", title: "New Coverage" do %>
+    <%= render "form", url: claim_coverages_path(v: @process_claim), meth: 'post' %>
+  <% end %>
+  <%# </div>
+</div> %>

@@ -1,0 +1,6 @@
+<%= turbo_stream.update @target do %>
+    <option value="">Select a branch</option>
+  <% @coop_branch.each do |coop_branch| %>
+    <option value="<%= coop_branch.id %>"><%= coop_branch.name %></option>
+  <% end %>
+<% end %>

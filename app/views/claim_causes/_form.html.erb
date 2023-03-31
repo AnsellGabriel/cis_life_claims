@@ -1,0 +1,18 @@
+
+<%= simple_form_for(@claim_cause) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :acd %>
+    <%= f.input :ucd %>
+    <%= f.input :osccd %>
+    <%= f.input :icd %>
+    <%= f.association :process_claim %>
+  </div>
+  <br>
+  <div class="form-actions text-end">
+    <%= link_to "Back", claim_causes_path, class: "btn btn-secondary" %>
+    <%= f.button :submit, class: "btn btn-success" %>
+  </div>
+<% end %>

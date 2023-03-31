@@ -1,0 +1,83 @@
+<%= simple_form_for(@process_claim) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <div class="form-inputs mb-3">
+    <div class="card mb-3">
+      <div class="card-header">
+        <h4>Claims Details</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <%#= f.input :date_filed, as: :string, wrapper: :date_filed, input_html: {value: I18n.l(f.object.date_filed)}, wrapper_html: { class: "col col-md-6" } %>
+          <%= f.input :date_filed, wrapper_html: { class: "col col-md-6" } %>
+          <%= f.input :date_incident, wrapper_html: { class: "col col-md-6" } %>
+        </div>
+        <div data-controller="coopbranch">
+          <div class="row">
+            <%= f.association :cooperative, prompt: "Select a cooperative", collection: Cooperative.order(:name), wrapper_html: { class: "col col-md-8"}, input_html: { class: 'form-select', data: { action: "change->coopbranch#change", controller: "ts--select" } } %>
+            <%= f.association :coop_branch, collection:[], wrapper_html: { class: "col col-md-4"}, input_html: { class: 'form-select', id: 'coopbranch_id', data: { coopbranch_target: "coopbranchSelect" } } %>
+          </div>
+        </div>
+        <div class="row">
+          <%= f.association :plan, prompt: "Select a plan", wrapper_html: { class: "col col-md-8" }, collection: Plan.order(:name) %>
+          <%= f.input :unit, collection: ProcessClaim::Units, wrapper_html: { class: "col col-md-4" }, wrapper_html: { class: 'col-md' } %>
+        </div>
+        <div class="row">
+          <%= f.association :agent, collection: Agent.order(:name), wrapper_html: { class: "col col-md-4"} %>
+          <%= f.input :insure_type, collection: ProcessClaim::Insure_type, wrapper_html: { class: 'col col-md-4' } %>
+          <%= f.association :cause, prompt: "Select a cause", collection: Cause.order(:name) , wrapper_html: { class: "col col-md-4"} %>
+          <%#= f.input :status, collection: ProcessClaim::Status, wrapper_html: { class: "col col-md-4"} %>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-3">
+      <div class="card-header">
+        <h4>Insured Details</h4>
+      </div>
+      <div class="card-body">
+        <div data-controller="geographs">
+          <div class="row">
+            <%= f.association :geo_region, label: "Region", prompt: "Select a region", wrapper_html: { class: "col col-md-3" }, input_html: { class: 'form-select', data: { action: "change->geographs#search_province" } } %>
+            <%= f.association :geo_province, label: "Province", wrapper_html: { class: "col col-md-3" }, input_html: { class: 'form-select', id: 'province_id', data: { geographs_target: "provinceSelect", action: "change->geographs#search_municipality" } } %>
+            <%= f.association :geo_municipality, label: "Municipality", wrapper_html: { class: "col col-md-3" }, input_html: { class: 'form-select', id: 'municipality_id', data: { geographs_target: "municipalitySelect", action: "change->geographs#search_barangay" } } %>
+            <%= f.association :geo_barangay, label: "Barangay", wrapper_html: { class: "col col-md-3" }, input_html: { class: 'form-select', id: 'barangay_id', data: { geographs_target: "barangaySelect" } }  %>
+          </div>
+        </div>
+        <%= f.input :street, label: "Number/Bldg., Street" %>
+        <div class="row">
+          <%= f.input :lastname, wrapper_html: { class: "col col-md-3" } %>
+          <%= f.input :firstname, wrapper_html: { class: "col col-md-3" } %>
+          <%= f.input :middlename, wrapper_html: { class: "col col-md-3" } %>
+          <%= f.input :suffix, collection: ProcessClaim::Suffix, wrapper_html: { class: "col col-md-3" } %>
+        </div>
+        <div class="row">
+          <%= f.input :birthdate, wrapper_html: { class: "col col-md-4" } %>
+          <%= f.input :age, wrapper_html: { class: "col col-md-2" } %>
+          <%= f.input :gender, collection: ProcessClaim::Gender, wrapper_html: { class: 'col-md-2' } %>
+          <%= f.input :occupation, wrapper_html: { class: "col col-md-4" } %>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h4>Cause of Claim</h4>
+      </div>
+      <div class="card-body">
+        <%= f.simple_fields_for :claim_cause do |cc| %>
+          <div class="row">
+
+            <%= cc.input :acd, label: "ACD", wrapper_html: { class: "col-md-6" } %>
+            <%= cc.input :ucd, label: "UCD", wrapper_html: { class: "col-md-6" } %>
+            <%= cc.input :icd, label: "ICD", wrapper_html: { class: "col-md-6" } %>
+            <%= cc.input :osccd, label: "OSCCD", wrapper_html: { class: "col-md-6" } %>
+          </div>
+          <%#= render 'question_fields', f: builder %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="form-actions text-end">
+    <%= link_to "Back", process_claims_path, class: 'btn btn-secondary' %>
+    <%= f.button :submit, class: 'btn-success' %>
+  </div>
+<% end %>

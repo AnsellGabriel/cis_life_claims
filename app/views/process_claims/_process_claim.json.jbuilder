@@ -1,0 +1,2 @@
+json.extract! process_claim, :id, :cooperative_id, :coop_branch_id, :plan_id, :agent_id, :geo_region_id, :geo_province_id, :geo_municipality_id, :geo_barangay_id, :cause_id, :unit, :insure_type, :street, :date_filed, :status, :lastname, :firstname, :middlename, :suffix, :birthdate, :gender, :age, :occupation, :date_incident, :created_at, :updated_at
+json.url process_claim_url(process_claim, format: :json)

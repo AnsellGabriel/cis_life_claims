@@ -1,0 +1,153 @@
+<div id="<%= dom_id @process_claim %>">
+
+  <%#= link_to '<i class="bi bi-clipboard-plus"></i> Process'.html_safe, new_claim_document_path(v: @process_claim), class: "btn btn-primary mb-3", data: { turbo_frame: "remote_modal" } %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <%# content_tag :strong, 'Cooperative' %>
+          <small class="text-muted"> ID# <%= @process_claim.id %> </small>
+          <%= content_tag :h3, @process_claim.get_fullname, class: "mb-0 text-primary" %>
+          <%= content_tag :p, @process_claim.cooperative, class: "mb-0" %>
+          <%= content_tag :p, @process_claim.coop_branch, class: "text-muted mb-0" %>
+          <%= content_tag :small, @process_claim.agent, class: "text-muted" %>
+          <%= content_tag :span, @process_claim.status, class: "badge bg-secondary" %>
+          <%= content_tag :span, @process_claim.entry_type, class: "badge bg-info text-dark" %>
+          <%= content_tag :span, @process_claim.claim_route, class: "badge bg-info text-dark" %>
+        </div>
+        <%= content_tag :div, class: "card-body" do %>
+          <%= content_tag :dl, class: "row" do %>
+            <%= content_tag :dt, 'Plan:', class: "col-sm-3" %>
+            <%= content_tag :dd, class: "col-sm-9" do %>
+              <%= content_tag :p, @process_claim.plan.name + " " + @process_claim.unit %>
+            <% end %>
+            <%= content_tag :dt, 'Date File:', class: "col-sm-3" %>
+            <%= content_tag :dd, @process_claim.date_filed, class: "col-sm-9" %>
+            <%= content_tag :dt, 'Date Incident:', class: "col-sm-3" %>
+            <%= content_tag :dd, @process_claim.date_incident, class: "col-sm-9" %>
+          <% end %>
+          <%= content_tag :dl, class: "row" do %>
+            <%= content_tag :dt, 'Insure Type', class: "col-sm-3" %>
+            <%= content_tag :dd, @process_claim.insure_type, class: "col-sm-9" %>
+            <%= content_tag :dt, 'Address:', class: "col-sm-3" %>
+            <%= content_tag :dd, class: "col-sm-9" do %>
+              <%= content_tag :p, @process_claim.geo_region, class: "mb-0" %>
+              <%= content_tag :small, @process_claim.get_address %>
+            <% end %>
+            <%= content_tag :dt, 'Birthdate:', class: "col-sm-3" %>
+            <%= content_tag :dd, @process_claim.birthdate, class: "col-sm-9" %>
+            <%= content_tag :dt, 'Age:', class: "col-sm-3" %>
+            <%= content_tag :dd, @process_claim.age, class: "col-sm-9" %>
+            <%= content_tag :dt, 'Gender:', class: "col-sm-3" %>
+            <%= content_tag :dd, @process_claim.gender, class: "col-sm-9" %>
+            <%= content_tag :dt, 'Occupation:', class: "col-sm-3" %>
+            <%= content_tag :dd, @process_claim.occupation, class: "col-sm-9" %>
+            <%= content_tag :dt, 'Cause:', class: "col-sm-3" %>
+            <%= content_tag :dd, @process_claim.cause, class: "col-sm-9 text-primary" %>
+            <%#= content_tag :h5, process_claim.cause, class: "text-primary" %>
+            <% unless @process_claim.claim_cause.nil? %>
+              <% unless @process_claim.claim_cause.acd == "" %>
+                <%= content_tag :dt, 'ACD', class: "col-sm-3" %>
+                <%= content_tag :dd, @process_claim.claim_cause.acd, class: "col-sm-9" %>
+              <% end %>
+              <% unless @process_claim.claim_cause.ucd == "" %>
+                <%= content_tag :dt, 'UCD', class: "col-sm-3" %>
+                <%= content_tag :dd, @process_claim.claim_cause.ucd, class: "col-sm-9" %>
+              <% end %>
+              <% unless @process_claim.claim_cause.osccd == "" %>
+                <%= content_tag :dt, 'OSCCD', class: "col-sm-3" %>
+                <%= content_tag :dd, @process_claim.claim_cause.osccd, class: "col-sm-9" %>
+              <% end %>
+              <% unless @process_claim.claim_cause.icd == "" %>
+                <%= content_tag :dt, 'ICD', class: "col-sm-3" %>
+                <%= content_tag :dd, @process_claim.claim_cause.icd, class: "col-sm-9" %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <div class="card-footer">
+          <%#= link_to "Edit", edit_process_claim_path(@process_claim), class: "btn btn-secondary btn-sm" %>
+          <%= link_to "Back", process_claims_path, class: "btn btn-secondary btn-sm" %>
+          <%#= button_to "Delete", @process_claim, method: :delete, class: 'btn btn-danger btn-sm' %>
+          <%#= link_to "Delete", process_claim_path(@process_claim), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card mb-3">
+        <div class="card-header">
+          <%= render 'action_button' %>
+          <p>Your authority level is upto <%= to_curr(@authority.max_authority) %> </p>
+        </div>
+        <div class="card-body">
+          <%#= link_to "Evaluate", evaluate_process_claim_path(@process_claim.id), class: "btn btn-warning" %>
+          <div class="row">
+            <div class="col-md-6">
+              <h4 class="text-primary">Claims Benefit</h4>
+            </div>
+            <div class="col-md-6">
+              <div class="text-end">
+                <%#= link_to '<i class="bi bi-plus-square"></i> Add Benefit'.html_safe, new_claim_benefit_path(v: @process_claim), class: "btn btn-primary btn-sm mb-3", data: { turbo_frame: "remote_modal" } %>
+              </div>
+            </div>
+          </div>
+          <%= render 'claim_benefits/show_benefit' %>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <h4 class="text-primary">Document</h4>
+            </div>
+            <div class="text-end col-sm-6">
+              <%#= link_to '<i class="bi bi-paperclip"></i> Add Document'.html_safe, new_claim_document_path(v: @process_claim), class: "btn btn-primary btn-sm mb-3", data: { turbo_frame: "remote_modal" } %>
+            </div>
+          </div>
+          <%= render 'claim_documents/show_document' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render 'tabs' %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <h4 class="col-md-6 text-primary">Recommendation</h4>
+            <div class="col-md-6 text-end">
+              <%= link_to '<i class="bi bi-chat-left-text"></i> Add Remark'.html_safe, new_claim_remark_path(v: @process_claim, s: ""), class: "btn btn-primary mb-3", data: { turbo_frame: "remote_modal" } %>
+            </div>
+          </div>
+          <%= render 'claim_remarks/show_remark' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="col-md-6 text-primary">Claims Track</h4>
+          <div class="track">
+            <div class="step <%= "active" if @process_claim.claim_filed %>"> <span class="icon"> <i class="bi bi-card-list"></i> </span> <span class="text"> <small> Claims filed </small> </span> </div>
+            <div class="step <%= "active" if @process_claim.processing %>"> <span class="icon"> <i class="bi bi-window"></i> </span> <span class="text"> <small> Processing </small> </span> </div>
+            <div class="step <%= "active" if @process_claim.approval %>">
+              <% if @process_claim.status == "Denied" %>
+                <span class="icon"> <i class="bi bi-shield-x"></i></span> <span class="text"> <small> Denied </small> </span>
+              <% elsif @process_claim.status == "Approved" %>
+                <span class="icon"> <i class="bi bi-shield-check"></i></span> <span class="text"> <small> Approved </small> </span>
+              <% else %>
+                <span class="icon"> <i class="bi bi-journal-check"></i> </span> <span class="text"> <small> Evaluation </small> </span>
+              <% end %>
+            </div>
+            <div class="step <%= "active" if @process_claim.payment %>"> <span class="icon"> <i class="bi bi-cash-coin"></i> </span> <span class="text"> <small> Payment </small>  </span> </div>
+            <div class="step <%= "active" if @process_claim.release %>"> <span class="icon"> <i class="bi bi-send"></i> </span> <span class="text"><small> Release </small> </span> </div>
+          </div>
+          <br>
+          <%= render 'show_claim_track' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%# <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script> %>
